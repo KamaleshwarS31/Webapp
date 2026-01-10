@@ -6,3 +6,4 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 }
 ?>
 <a href="usermanagement/users.php">Users</a>
+<a href="course/courses.php">Users</a>

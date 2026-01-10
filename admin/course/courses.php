@@ -1,10 +1,10 @@
 <?php
-require 'C:\wamp64\www\website1\auth_check.php'; // checks admin role
+require 'C:\wamp64\www\website1\auth_check.php';
 $conn = mysqli_connect("localhost","root","","sathya_academy");
 
-$res = mysqli_query($conn, "SELECT id,name,email,username,role,status FROM users");
+$res = mysqli_query($conn, "SELECT * FROM courses ORDER BY id DESC");
 
-// Notification
+/* Notifications */
 $notifications = [];
 $nQuery = "SELECT title, link FROM notifications WHERE status=1 ORDER BY id DESC";
 $nResult = mysqli_query($conn, $nQuery);
@@ -15,13 +15,13 @@ while($row = mysqli_fetch_assoc($nResult)){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Primary Meta Tags -->
-    <title>Sathya Academy - Master Tech, Build Career</title>
-    <meta name="title" content="Sathya Academy - Master Tech, Build Career" />
-    <link rel="shortcut icon" href="../../assets/Logo.png" type="image/x-icon">
-    <style>
+<meta charset="UTF-8">
+<title>Course Management</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="../../assets/Logo.png" type="image/x-icon">
+
+<!-- 🔥 USE SAME STYLE AS users.php -->
+<style>
         body{
             margin: 0;
             background-color: #12374A;
@@ -380,182 +380,163 @@ input:checked + .slider:before{
      </style>
 </head>
 <body>
-    <div class="navbar-container">
-        <div class="navbar">
-            <div class="nleft">
-                <a href="index.html"><img src="../../assets/Logo.png" alt="Logo" width="50" height="auto"></a>
-            </div>
-            <div class="ncenter">
-            </div>
-            <div class="nright">
-                <a href="../../logout.php">Logout</a>
-            </div>
+
+<!-- ===== TOP NAVBAR ===== -->
+<div class="navbar-container">
+    <div class="navbar">
+        <div class="nleft">
+            <a href="../../index.html">
+                <img src="../../assets/Logo.png" width="50">
+            </a>
+        </div>
+        <div class="ncenter"></div>
+        <div class="nright">
+            <a href="../../logout.php">Logout</a>
         </div>
     </div>
-    <div class="notification">
-        <marquee behavior="slow" direction="left">
-            <?php if(count($notifications) > 0): ?>
-                <?php foreach ($notifications as $n): ?>
-                    <a href="<?= htmlspecialchars($n['link']) ?>" target = "_blank"><?= htmlspecialchars($n['title']) ?>
-                    </a>
-                    &nbsp;&nbsp; | &nbsp;&nbsp;
-                <?php endforeach; ?>
-            <?php else: ?>
-                No new notifications
-            <?php endif; ?>
-        </marquee>
-    </div>
-    <div class="layout">
-        <div class="sidebar">
-            <a href="../dashboard.php">Dashboard</a>
-            <a href="users.php" class="active">Users</a>
-            <a href="../course/courses.php">Courses</a>
-        </div>
-    <div class="main-content">
-      <div class="admin-container">
-    <h2>User Management</h2>
+</div>
 
-    <a href="#" class="add-btn" onclick="openModal('user_add.php')">➕ Add User</a>
+<!-- ===== NOTIFICATION BAR ===== -->
+<div class="notification">
+<marquee>
+<?php foreach($notifications as $n): ?>
+<a href="<?= htmlspecialchars($n['link']) ?>" target="_blank">
+<?= htmlspecialchars($n['title']) ?>
+</a> &nbsp; | &nbsp;
+<?php endforeach; ?>
+</marquee>
+</div>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Username</th>
-            <th>Role</th>
-            <!-- <th>Status</th> -->
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
+<!-- ===== LAYOUT ===== -->
+<div class="layout">
 
-        <?php while($u = mysqli_fetch_assoc($res)): ?>
-        <tr>
-            <td>
-            <?= htmlspecialchars($u['name']) ?>
-            <br>
-            <small style="color:#aaa">(ID: <?= (int)$u['id'] ?>)</small>
-            </td>
-            <td><?= htmlspecialchars($u['email']) ?></td>
-            <td><?= htmlspecialchars($u['username']) ?></td>
-            <td><?= htmlspecialchars($u['role']) ?></td>
+<!-- ===== SIDEBAR ===== -->
+<div class="sidebar">
+    <h3>Admin</h3>
+    <a href="../dashboard.php">Dashboard</a>
+    <a href="../usermanagement/users.php">Users</a>
+    <a href="courses.php" class="active">Courses</a>
+</div>
 
-            <!-- <td>
-                <?= $u['status'] ? 'Active' : 'Inactive' ?>
-            </td> -->
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main-content">
 
-            <!-- Toggle -->
-            <td>
-    <label class="switch">
-        <input type="checkbox"
-            <?= ((int)$u['status'] === 1) ? 'checked' : '' ?>
-            data-id="<?= (int)$u['id'] ?>"
-            onchange="toggleUser(this)">
-        <span class="slider"></span>
-    </label>
-    <span class="status-text">
-        <?= ((int)$u['status'] === 1) ? 'Active' : 'Inactive' ?>
-    </span>
+<div class="admin-container">
+<h2>Course Management</h2>
+
+<a href="#" class="add-btn" onclick="openModal('course_add.php')">
+➕ Add Course
+</a>
+
+<table>
+<tr>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Price</th>
+    <th>Status</th>
+    <th>Actions</th>
+</tr>
+
+<?php while($c = mysqli_fetch_assoc($res)): ?>
+<tr>
+<td>
+    <img src="../../uploads/<?= 
+    ($c['category'] === 'package') ? 'packages' : 'courses'
+?>/<?= htmlspecialchars($c['image']) ?>"
+width="60" style="border-radius:6px">
+
+</td>
+<td><?= htmlspecialchars($c['title']) ?></td>
+<td><?= htmlspecialchars($c['category']) ?></td>
+<td>₹<?= (int)$c['price'] ?></td>
+
+<td>
+<label class="switch">
+<input type="checkbox"
+    <?= $c['status'] ? 'checked' : '' ?>
+    data-id="<?= (int)$c['id'] ?>"
+    onchange="toggleCourse(this)">
+<span class="slider"></span>
+</label>
+<span class="status-text">
+<?= $c['status'] ? 'Active' : 'Inactive' ?>
+</span>
 </td>
 
+<td class="actions">
+<a href="#" onclick="openModal('course_view.php?id=<?= $c['id'] ?>')">👁</a>
+<a href="#" onclick="openModal('course_edit.php?id=<?= $c['id'] ?>')">✏</a>
+<a href="#" onclick="deleteCourse(<?= $c['id'] ?>)">🗑</a>
+</td>
+</tr>
+<?php endwhile; ?>
+</table>
+</div>
 
-            <!-- Actions -->
-            <td class="actions">
-            <a href="#" onclick="openModal('user_view.php?id=<?= $u['id'] ?>')">👁 View</a>
-            <a href="#" onclick="openModal('user_edit.php?id=<?= $u['id'] ?>')">✏ Edit</a>
-            <a href="#" onclick="deleteUser(<?= $u['id'] ?>)">🗑 Delete</a>
-          </td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
 </div>
-<!-- Modal -->
-<div class="modal" id="userModal">
-  <div class="modal-box">
-    <span class="close" onclick="closeModal()">×</span>
-    <div id="modalContent"></div>
-  </div>
 </div>
-        </div>
-        </div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal" id="courseModal">
+<div class="modal-box">
+<span class="close" onclick="closeModal()">×</span>
+<div id="modalContent"></div>
+</div>
+</div>
+
+<!-- ===== JS ===== -->
 <script>
 function openModal(url){
     fetch(url)
-    .then(res => res.text())
-    .then(html => {
-    console.log("MODAL HTML:", html);
-    document.getElementById("modalContent").innerHTML = html;
-    document.getElementById("userModal").style.display = "block";
-});
-
+    .then(r=>r.text())
+    .then(html=>{
+        document.getElementById("modalContent").innerHTML = html;
+        document.getElementById("courseModal").style.display="block";
+    });
 }
 
 function closeModal(){
-    document.getElementById("userModal").style.display = "none";
+    document.getElementById("courseModal").style.display="none";
 }
 
-/* Submit form inside modal */
-function submitForm(formId, actionUrl){
-    const form = document.getElementById(formId);
-    const data = new FormData(form);
-
-    fetch(actionUrl, {
-        method: "POST",
-        body: data
-    })
-    .then(res => res.json())
-    .then(resp => {
-        if(resp.success){
-            location.reload();
-        }else{
-            alert(resp.msg);
-        }
+function deleteCourse(id){
+    if(!confirm("Delete course?")) return;
+    fetch("course_delete.php?id="+id)
+    .then(r=>r.json())
+    .then(d=>{
+        if(d.success) location.reload();
+        else alert(d.msg);
     });
 }
 
-/* Delete */
-function deleteUser(id){
-    if(!confirm("Delete this user?")) return;
-
-    fetch("user_delete.php?id="+id)
-    .then(res => res.json())
-    .then(resp => {
-        if(resp.success) location.reload();
-        else alert(resp.msg);
-    });
-}
-
-/* Toggle */
-function toggleUser(el){
-
+function toggleCourse(el){
     const id = parseInt(el.dataset.id, 10);
     const statusText = el.closest("td").querySelector(".status-text");
 
-    if (!id || id <= 0) {
-        alert("Invalid user ID");
-        el.checked = !el.checked;
-        return;
-    }
+    /* Temporarily disable toggle */
+    el.disabled = true;
 
-    fetch("user_toggle.php?id=" + id)
+    fetch("course_toggle.php?id=" + id)
         .then(res => res.json())
         .then(resp => {
 
             if (!resp.success) {
                 alert(resp.msg || "Toggle failed");
-                el.checked = !el.checked;
+                el.checked = !el.checked; // revert
                 return;
             }
 
-            /* 🔥 UPDATE UI BASED ON RESPONSE */
-            if (resp.status === 1) {
-                statusText.textContent = "Active";
-            } else {
-                statusText.textContent = "Inactive";
-            }
+            /* ✅ Sync checkbox with DB */
+            el.checked = resp.status === 1;
+            statusText.textContent = resp.status === 1 ? "Active" : "Inactive";
         })
         .catch(() => {
             alert("Network error");
             el.checked = !el.checked;
+        })
+        .finally(() => {
+            el.disabled = false;
         });
 }
 
