@@ -305,8 +305,8 @@ input:checked + .slider:before{
 
             <!-- Actions -->
             <td class="actions">
-            <a href="#" onclick="openModal('ajax_user_view.php?id=<?= $u['id'] ?>')">👁 View</a>
-            <a href="#" onclick="openModal('ajax_user_edit.php?id=<?= $u['id'] ?>')">✏ Edit</a>
+            <a href="#" onclick="openModal('user_view.php?id=<?= $u['id'] ?>')">👁 View</a>
+            <a href="#" onclick="openModal('user_edit.php?id=<?= $u['id'] ?>')">✏ Edit</a>
             <a href="#" onclick="deleteUser(<?= $u['id'] ?>)">🗑 Delete</a>
           </td>
         </tr>
@@ -357,7 +357,7 @@ function submitForm(formId, actionUrl){
 function deleteUser(id){
     if(!confirm("Delete this user?")) return;
 
-    fetch("ajax_user_delete.php?id="+id)
+    fetch("user_delete.php?id="+id)
     .then(res => res.json())
     .then(resp => {
         if(resp.success) location.reload();
@@ -367,7 +367,7 @@ function deleteUser(id){
 
 /* Toggle */
 function toggleUser(id){
-    fetch("ajax_user_toggle.php?id="+id)
+    fetch("user_toggle.php?id="+id)
     .then(res => res.json())
     .then(() => location.reload());
 }
