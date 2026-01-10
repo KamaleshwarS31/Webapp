@@ -22,39 +22,19 @@ if (!$user) {
 }
 ?>
 
-<h3 style="margin-top:0;">User Details</h3>
+<h3>User Details</h3>
 
-<table style="width:100%;background-color:#12374A;">
-    <tr>
-        <td><b>Name</b></td>
-        <td><?= htmlspecialchars($user['name']) ?></td>
-    </tr>
-    <tr>
-        <td><b>Email</b></td>
-        <td><?= htmlspecialchars($user['email']) ?></td>
-    </tr>
-    <tr>
-        <td><b>Username</b></td>
-        <td><?= htmlspecialchars($user['username']) ?></td>
-    </tr>
-    <tr>
-        <td><b>Role</b></td>
-        <td><?= htmlspecialchars($user['role']) ?></td>
-    </tr>
-    <tr>
-        <td><b>Status</b></td>
-        <td>
-            <?= $user['status']
-                ? "<span style='color:green'>Active</span>"
-                : "<span style='color:red'>Inactive</span>" ?>
-        </td>
-    </tr>
+<table>
+    <tr><td><b>Name</b></td><td><?= htmlspecialchars($user['name']) ?></td></tr>
+    <tr><td><b>Email</b></td><td><?= htmlspecialchars($user['email']) ?></td></tr>
+    <tr><td><b>Username</b></td><td><?= htmlspecialchars($user['username']) ?></td></tr>
+    <tr><td><b>Role</b></td><td><?= htmlspecialchars($user['role']) ?></td></tr>
+    <tr><td><b>Status</b></td><td><?= $user['status']?'Active':'Inactive' ?></td></tr>
 </table>
 
-<hr>
-
-<div style="text-align:center;">
-    <button onclick="openModal('user_edit.php?id=<?= $id ?>')">
-        ✏ Edit User
+<div class="modal-actions">
+    <button class="secondary-btn"
+        onclick="openModal('user_edit.php?id=<?= $id ?>')">
+        Edit User
     </button>
 </div>

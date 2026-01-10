@@ -8,15 +8,16 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 /* Absolute base path (safe & portable) */
-$basePath = 'C:/wamp64/www/website1/PHPMailer-master/PHPMailer-master/src/';
 
-require $basePath . 'Exception.php';
-require $basePath . 'PHPMailer.php';
-require $basePath . 'SMTP.php';
+require_once __DIR__ . '/../../PHPMailer-master/PHPMailer-master/src/Exception.php';
+require_once __DIR__ . '/../../PHPMailer-master/PHPMailer-master/src/PHPMailer.php';
+require_once __DIR__ . '/../../PHPMailer-master/PHPMailer-master/src/SMTP.php';
 
 require_once __DIR__ . '/email_templates/welcome_user.php';
 require_once __DIR__ . '/email_templates/profile_updated.php';
 require_once __DIR__ . '/email_templates/password_changed.php';
+require_once __DIR__ . '/email_templates/account_status.php';
+
 
 function sendMail($to, $subject, $body)
 {

@@ -1,9 +1,11 @@
 <?php
-require '../../auth_check.php';
+require __DIR__ . '/../../auth_check.php';
 require 'mailer.php';
 $conn = mysqli_connect("localhost","root","","sathya_academy");
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
+  header('Content-Type: application/json');
+
     $name=$_POST['name'];
     $email=$_POST['email'];
     $username=$_POST['username'];
@@ -23,18 +25,24 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 }
 ?>
 
+<h3>Add New User</h3>
+
 <form id="addUserForm">
-  <input name="name" placeholder="Name" required><br>
-  <input name="email" placeholder="Email" required><br>
-  <input name="username" placeholder="Username" required><br>
-  <select name="role">
-    <option>student</option>
-    <option>teacher</option>
-    <option>alumni</option>
-    <option>admin</option>
-  </select><br>
-  <button type="button"
-          onclick="submitForm('addUserForm','ajax_user_add.php')">
-    Add User
-  </button>
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="text" name="username" placeholder="Username" required>
+
+    <select name="role" required>
+        <option value="">Select Role</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="alumni">Alumni</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <button type="button"
+        onclick="submitForm('addUserForm','user_add.php')">
+        Add User
+    </button>
 </form>
+

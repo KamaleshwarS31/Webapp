@@ -213,7 +213,7 @@ input:checked + .slider:before{
 
 .modal-box{
     background:#459C7F;
-    width:360px;
+    width:450px;
     margin:100px auto;
     padding:20px;
     border-radius:10px;
@@ -229,6 +229,111 @@ input:checked + .slider:before{
     cursor:pointer;
     color:#12374A;
 }
+/* ===== MODAL FORM STYLES ===== */
+
+.modal-box h3,
+.modal-box h4 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #12374A;
+    text-align: center;
+}
+
+/* Form wrapper */
+.modal-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Inputs & Select */
+.modal-box input,
+.modal-box select {
+    width: 90%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #12374A;
+    font-size: 14px;
+    outline: none;
+    background: #ffffff;
+    color: #12374A;
+}
+
+/* Disabled input */
+.modal-box input:disabled {
+    background: #eaeaea;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Focus effect */
+.modal-box input:focus,
+.modal-box select:focus {
+    border-color: #E9BF65;
+    box-shadow: 0 0 0 2px rgba(233,191,101,0.3);
+}
+
+/* Divider */
+.modal-box hr {
+    border: none;
+    height: 1px;
+    background: #12374A;
+    margin: 10px 0;
+}
+
+/* Buttons */
+.modal-box button {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #12374A;
+    color: #E9BF65;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-box button:hover {
+    background: #E9BF65;
+    color: #12374A;
+}
+
+/* Secondary buttons (View modal etc.) */
+.modal-box .secondary-btn {
+    background: #459C7F;
+    color: #12374A;
+}
+
+.modal-box .secondary-btn:hover {
+    background: #E9BF65;
+}
+
+/* Small helper text */
+.modal-box small {
+    font-size: 12px;
+    color: #12374A;
+    opacity: 0.8;
+}
+
+/* View table inside modal */
+.modal-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.modal-box table td {
+    padding: 6px;
+    color: #E9BF65;
+}
+
+/* Center buttons */
+.modal-actions {
+    text-align: center;
+    margin-top: 10px;
+}
+
 
      </style>
 </head>
@@ -281,7 +386,11 @@ input:checked + .slider:before{
 
         <?php while($u = mysqli_fetch_assoc($res)): ?>
         <tr>
-            <td><?= htmlspecialchars($u['name']) ?></td>
+            <td>
+            <?= htmlspecialchars($u['name']) ?>
+            <br>
+            <small style="color:#aaa">(ID: <?= (int)$u['id'] ?>)</small>
+            </td>
             <td><?= htmlspecialchars($u['email']) ?></td>
             <td><?= htmlspecialchars($u['username']) ?></td>
             <td><?= htmlspecialchars($u['role']) ?></td>
@@ -292,16 +401,18 @@ input:checked + .slider:before{
 
             <!-- Toggle -->
             <td>
-                <label class="switch">
-                    <input type="checkbox"
-                           <?= $u['status'] ? 'checked' : '' ?>
-                           onchange="toggleUser(<?= $u['id'] ?>)">
-                    <span class="slider"></span>
-                </label>
-                <span class="status-text">
-                    <?= $u['status'] ? 'Active' : 'Inactive' ?>
-                </span>
-            </td>
+    <label class="switch">
+        <input type="checkbox"
+            <?= ((int)$u['status'] === 1) ? 'checked' : '' ?>
+            data-id="<?= (int)$u['id'] ?>"
+            onchange="toggleUser(this)">
+        <span class="slider"></span>
+    </label>
+    <span class="status-text">
+        <?= ((int)$u['status'] === 1) ? 'Active' : 'Inactive' ?>
+    </span>
+</td>
+
 
             <!-- Actions -->
             <td class="actions">
@@ -325,9 +436,11 @@ function openModal(url){
     fetch(url)
     .then(res => res.text())
     .then(html => {
-        document.getElementById("modalContent").innerHTML = html;
-        document.getElementById("userModal").style.display = "block";
-    });
+    console.log("MODAL HTML:", html);
+    document.getElementById("modalContent").innerHTML = html;
+    document.getElementById("userModal").style.display = "block";
+});
+
 }
 
 function closeModal(){
@@ -366,22 +479,41 @@ function deleteUser(id){
 }
 
 /* Toggle */
-function toggleUser(id){
-    fetch("user_toggle.php?id="+id)
-    .then(res => res.json())
-    .then(resp => {
-        if(resp.success){
-            location.reload();
-        } else {
+function toggleUser(el){
+
+    const id = parseInt(el.dataset.id, 10);
+
+    if (!id || id < 0) {
+        alert("Invalid user ID");
+        el.checked = !el.checked;
+        return;
+    }
+
+    fetch("user_toggle.php?id=" + id)
+    .then(res => res.text())
+    .then(text => {
+        console.log("TOGGLE RESPONSE:", text);
+
+        let resp;
+        try {
+            resp = JSON.parse(text);
+        } catch (e) {
+            alert("Server error. Check console.");
+            el.checked = !el.checked;
+            return;
+        }
+
+        if (!resp.success) {
             alert(resp.msg || "Toggle failed");
+            el.checked = !el.checked;
         }
     })
     .catch(err => {
-        alert("Network error");
         console.error(err);
+        alert("Network error");
+        el.checked = !el.checked;
     });
 }
-
 </script>
 
 </body>

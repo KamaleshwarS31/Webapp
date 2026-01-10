@@ -1,0 +1,150 @@
+[10-Jan-2026 17:30:37 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Duplicate entry '0' for key 'users.PRIMARY' in C:\wamp64\www\website1\admin\usermanagement\user_add.php:15
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_add.php(15): mysqli_query(Object(mysqli), 'INSERT INTO use...')
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\user_add.php on line 15
+[10-Jan-2026 17:31:38 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function passwordChangedTemplate(), 1 passed in C:\wamp64\www\website1\admin\usermanagement\user_edit.php on line 46 and exactly 3 expected in C:\wamp64\www\website1\admin\usermanagement\email_templates\password_changed.php:2
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_edit.php(46): passwordChangedTemplate('Kamaleshwar S')
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\email_templates\password_changed.php on line 2
+[10-Jan-2026 17:31:49 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function passwordChangedTemplate(), 1 passed in C:\wamp64\www\website1\admin\usermanagement\user_edit.php on line 46 and exactly 3 expected in C:\wamp64\www\website1\admin\usermanagement\email_templates\password_changed.php:2
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_edit.php(46): passwordChangedTemplate('Kamaleshwar S')
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\email_templates\password_changed.php on line 2
+[10-Jan-2026 17:35:44 UTC] PHP Warning:  Undefined array key "username" in C:\wamp64\www\website1\admin\usermanagement\user_edit.php on line 17
+[10-Jan-2026 17:35:44 UTC] PHP Stack trace:
+[10-Jan-2026 17:35:44 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_edit.php:0
+[10-Jan-2026 17:36:07 UTC] PHP Warning:  Undefined array key "username" in C:\wamp64\www\website1\admin\usermanagement\user_edit.php on line 17
+[10-Jan-2026 17:36:07 UTC] PHP Stack trace:
+[10-Jan-2026 17:36:07 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_edit.php:0
+[10-Jan-2026 17:53:07 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:53:07 UTC] PHP Stack trace:
+[10-Jan-2026 17:53:07 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:0
+[10-Jan-2026 17:53:07 UTC] PHP   2. require_once() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:3
+[10-Jan-2026 17:53:07 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_toggle.php(3): require_once()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:53:10 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:53:10 UTC] PHP Stack trace:
+[10-Jan-2026 17:53:10 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:0
+[10-Jan-2026 17:53:10 UTC] PHP   2. require_once() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:3
+[10-Jan-2026 17:53:10 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_toggle.php(3): require_once()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:54:55 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:54:55 UTC] PHP Stack trace:
+[10-Jan-2026 17:54:55 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:0
+[10-Jan-2026 17:54:55 UTC] PHP   2. require_once() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:3
+[10-Jan-2026 17:54:55 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_toggle.php(3): require_once()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:54:57 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:54:57 UTC] PHP Stack trace:
+[10-Jan-2026 17:54:57 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:0
+[10-Jan-2026 17:54:57 UTC] PHP   2. require_once() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:3
+[10-Jan-2026 17:54:57 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_toggle.php(3): require_once()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:55:37 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:55:37 UTC] PHP Stack trace:
+[10-Jan-2026 17:55:37 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:0
+[10-Jan-2026 17:55:37 UTC] PHP   2. require_once() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:3
+[10-Jan-2026 17:55:37 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_toggle.php(3): require_once()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:55:39 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 17:55:39 UTC] PHP Stack trace:
+[10-Jan-2026 17:55:39 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:0
+[10-Jan-2026 17:55:39 UTC] PHP   2. require_once() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:3
+[10-Jan-2026 17:55:39 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_toggle.php(3): require_once()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:23:11 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:23:11 UTC] PHP Stack trace:
+[10-Jan-2026 18:23:11 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_add.php:0
+[10-Jan-2026 18:23:11 UTC] PHP   2. require() C:\wamp64\www\website1\admin\usermanagement\user_add.php:3
+[10-Jan-2026 18:23:11 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_add.php(3): require()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:23:21 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:23:21 UTC] PHP Stack trace:
+[10-Jan-2026 18:23:21 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_add.php:0
+[10-Jan-2026 18:23:21 UTC] PHP   2. require() C:\wamp64\www\website1\admin\usermanagement\user_add.php:3
+[10-Jan-2026 18:23:21 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_add.php(3): require()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:23:42 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:23:42 UTC] PHP Stack trace:
+[10-Jan-2026 18:23:42 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_add.php:0
+[10-Jan-2026 18:23:42 UTC] PHP   2. require() C:\wamp64\www\website1\admin\usermanagement\user_add.php:3
+[10-Jan-2026 18:23:42 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_add.php(3): require()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:24:57 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:24:57 UTC] PHP Stack trace:
+[10-Jan-2026 18:24:57 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_add.php:0
+[10-Jan-2026 18:24:57 UTC] PHP   2. require() C:\wamp64\www\website1\admin\usermanagement\user_add.php:3
+[10-Jan-2026 18:24:57 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_add.php(3): require()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:26:52 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:26:52 UTC] PHP Stack trace:
+[10-Jan-2026 18:26:52 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_add.php:0
+[10-Jan-2026 18:26:52 UTC] PHP   2. require() C:\wamp64\www\website1\admin\usermanagement\user_add.php:3
+[10-Jan-2026 18:26:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_add.php(3): require()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:28:10 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:28:10 UTC] PHP Stack trace:
+[10-Jan-2026 18:28:10 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_add.php:0
+[10-Jan-2026 18:28:10 UTC] PHP   2. require() C:\wamp64\www\website1\admin\usermanagement\user_add.php:3
+[10-Jan-2026 18:28:10 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_add.php(3): require()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:32:25 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:32:25 UTC] PHP Stack trace:
+[10-Jan-2026 18:32:25 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_add.php:0
+[10-Jan-2026 18:32:25 UTC] PHP   2. require() C:\wamp64\www\website1\admin\usermanagement\user_add.php:3
+[10-Jan-2026 18:32:25 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_add.php(3): require()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:34:39 UTC] PHP Warning:  require(../../PHPMailer-master/PHPMailer-master/Exception.php): Failed to open stream: No such file or directory in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:34:39 UTC] PHP Stack trace:
+[10-Jan-2026 18:34:39 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_add.php:0
+[10-Jan-2026 18:34:39 UTC] PHP   2. require() C:\wamp64\www\website1\admin\usermanagement\user_add.php:3
+[10-Jan-2026 18:34:39 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '../../PHPMailer-master/PHPMailer-master/Exception.php' (include_path='.;C:\php\pear') in C:\wamp64\www\website1\admin\usermanagement\mailer.php:13
+Stack trace:
+#0 C:\wamp64\www\website1\admin\usermanagement\user_add.php(3): require()
+#1 {main}
+  thrown in C:\wamp64\www\website1\admin\usermanagement\mailer.php on line 13
+[10-Jan-2026 18:44:50 UTC] PHP Fatal error:  Cannot redeclare accountStatusTemplate() (previously declared in C:\wamp64\www\website1\admin\usermanagement\email_templates\account_status.php:2) in C:\wamp64\www\website1\admin\usermanagement\email_templates\account_status.php on line 2
+[10-Jan-2026 18:44:50 UTC] PHP Stack trace:
+[10-Jan-2026 18:44:50 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:0
