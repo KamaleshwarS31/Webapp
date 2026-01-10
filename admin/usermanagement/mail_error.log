@@ -148,3 +148,6 @@ Stack trace:
 [10-Jan-2026 18:44:50 UTC] PHP Fatal error:  Cannot redeclare accountStatusTemplate() (previously declared in C:\wamp64\www\website1\admin\usermanagement\email_templates\account_status.php:2) in C:\wamp64\www\website1\admin\usermanagement\email_templates\account_status.php on line 2
 [10-Jan-2026 18:44:50 UTC] PHP Stack trace:
 [10-Jan-2026 18:44:50 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:0
+[10-Jan-2026 18:50:53 UTC] PHP Fatal error:  Cannot redeclare accountStatusTemplate() (previously declared in C:\wamp64\www\website1\admin\usermanagement\email_templates\account_status.php:2) in C:\wamp64\www\website1\admin\usermanagement\email_templates\account_status.php on line 2
+[10-Jan-2026 18:50:53 UTC] PHP Stack trace:
+[10-Jan-2026 18:50:53 UTC] PHP   1. {main}() C:\wamp64\www\website1\admin\usermanagement\user_toggle.php:0

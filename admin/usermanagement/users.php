@@ -333,6 +333,47 @@ input:checked + .slider:before{
     text-align: center;
     margin-top: 10px;
 }
+/* ===== LAYOUT ===== */
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+    width:220px;
+    background:#0b2533;
+    padding:20px 10px;
+}
+
+.sidebar h3{
+    color:#E9BF65;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.sidebar a{
+    display:block;
+    padding:10px 12px;
+    margin-bottom:8px;
+    background:#12374A;
+    color:#E9BF65;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:#459C7F;
+    color:#12374A;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content{
+    flex:1;
+    padding:20px;
+}
 
 
      </style>
@@ -344,14 +385,9 @@ input:checked + .slider:before{
                 <a href="index.html"><img src="../../assets/Logo.png" alt="Logo" width="50" height="auto"></a>
             </div>
             <div class="ncenter">
-                <a href="home.html">Home</a>
-                <a href="courses.html">Courses</a>
-                <a href="packages.html">Packages</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
             </div>
             <div class="nright">
-                <a href="login.php">Login</a>
+                <a href="../../logout.php">Logout</a>
             </div>
         </div>
     </div>
@@ -368,6 +404,12 @@ input:checked + .slider:before{
             <?php endif; ?>
         </marquee>
     </div>
+    <div class="layout">
+        <div class="sidebar">
+            <a href="../dashboard.php">Dashboard</a>
+            <a href="users.php" class="active">Users</a>
+        </div>
+    <div class="main-content">
       <div class="admin-container">
     <h2>User Management</h2>
 
@@ -431,6 +473,8 @@ input:checked + .slider:before{
     <div id="modalContent"></div>
   </div>
 </div>
+        </div>
+        </div>
 <script>
 function openModal(url){
     fetch(url)
@@ -482,38 +526,37 @@ function deleteUser(id){
 function toggleUser(el){
 
     const id = parseInt(el.dataset.id, 10);
+    const statusText = el.closest("td").querySelector(".status-text");
 
-    if (!id || id < 0) {
+    if (!id || id <= 0) {
         alert("Invalid user ID");
         el.checked = !el.checked;
         return;
     }
 
     fetch("user_toggle.php?id=" + id)
-    .then(res => res.text())
-    .then(text => {
-        console.log("TOGGLE RESPONSE:", text);
+        .then(res => res.json())
+        .then(resp => {
 
-        let resp;
-        try {
-            resp = JSON.parse(text);
-        } catch (e) {
-            alert("Server error. Check console.");
-            el.checked = !el.checked;
-            return;
-        }
+            if (!resp.success) {
+                alert(resp.msg || "Toggle failed");
+                el.checked = !el.checked;
+                return;
+            }
 
-        if (!resp.success) {
-            alert(resp.msg || "Toggle failed");
+            /* 🔥 UPDATE UI BASED ON RESPONSE */
+            if (resp.status === 1) {
+                statusText.textContent = "Active";
+            } else {
+                statusText.textContent = "Inactive";
+            }
+        })
+        .catch(() => {
+            alert("Network error");
             el.checked = !el.checked;
-        }
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Network error");
-        el.checked = !el.checked;
-    });
+        });
 }
+
 </script>
 
 </body>
