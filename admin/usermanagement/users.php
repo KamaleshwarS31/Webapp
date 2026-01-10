@@ -369,8 +369,19 @@ function deleteUser(id){
 function toggleUser(id){
     fetch("user_toggle.php?id="+id)
     .then(res => res.json())
-    .then(() => location.reload());
+    .then(resp => {
+        if(resp.success){
+            location.reload();
+        } else {
+            alert(resp.msg || "Toggle failed");
+        }
+    })
+    .catch(err => {
+        alert("Network error");
+        console.error(err);
+    });
 }
+
 </script>
 
 </body>

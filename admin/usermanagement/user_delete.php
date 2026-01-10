@@ -1,5 +1,5 @@
 <?php
-require '../auth_check.php';
+require '../../auth_check.php';
 $conn=mysqli_connect("localhost","root","","sathya_academy");
 $id=(int)$_GET['id'];
 
