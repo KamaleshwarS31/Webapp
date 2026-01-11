@@ -18,9 +18,22 @@ $imgPath = ($c['category'] === 'package')
 <img src="<?= htmlspecialchars($imgPath) ?>" width="200">
 <br><br>
 
+<?php
+$price = $c['price'];
+$discount = $c['discount'];
+$final = $price - ($price * $discount / 100);
+?>
 <b>Category:</b> <?= $c['category'] ?><br>
 <b>Career:</b> <?= $c['career'] ?><br>
 <b>Price:</b> ₹<?= $c['price'] ?><br>
-<b>Discount:</b> <?= $c['discount'] ?>%<br>
+<b>Discount:</b><p>
+<?php if ($discount > 0): ?>
+    <del>₹<?= number_format($price) ?></del>
+    <strong> ₹<?= number_format($final) ?></strong>
+    <span>(<?= $discount ?>% OFF)</span>
+<?php else: ?>
+    <strong>₹<?= number_format($price) ?></strong>
+<?php endif; ?>
+</p><br>
 
 <p><?= nl2br($c['description']) ?></p>

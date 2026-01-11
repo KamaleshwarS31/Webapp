@@ -6,6 +6,10 @@ ini_set('session.cookie_secure', isset($_SERVER['HTTPS']));
 session_start();
 session_regenerate_id(true);
 
+// Recaptcha
+$RECAPTCHA_SITE_KEY = "6Lc7CEIsAAAAAMGrAukz3PJDRv9M9uU1VPQZOXZ1";
+$RECAPTCHA_SECRET_KEY = "6Lc7CEIsAAAAAE_96ybdgMQwUHpoygBsDnL6x9xm";
+
 $conn = mysqli_connect("localhost", "root", "", "sathya_academy");
 if(!$conn){
     die("Database connection failed");

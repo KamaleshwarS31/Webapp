@@ -10,6 +10,18 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $price=$_POST['price'];
     $discount=$_POST['discount'];
 
+    if ($price <= 0) {
+        echo json_encode(["success"=>false, "msg"=>"Invalid price"]);
+        exit;
+    }
+
+    if ($discount < 0 || $discount > 100) {
+        echo json_encode(["success"=>false, "msg"=>"Discount must be between 0 and 100"]);
+        exit;
+    }
+
+    $finalPrice = $price - ($price * $discount / 100);
+
     $img = $_FILES['image']['name'];
     $category = $_POST['category'];
 $imageName = $_FILES['image']['name'];
@@ -40,7 +52,7 @@ if (!move_uploaded_file($tmp, $uploadDir . $newImage)) {
         "INSERT INTO courses 
         (image,title,category,description,career,price,discount,status)
         VALUES
-        ('$img','$title','$category','$description','$career','$price','$discount',1)"
+        ('$newImage','$title','$category','$description','$career','$price','$discount',1)"
     );
 
     echo json_encode(["success"=>true]);

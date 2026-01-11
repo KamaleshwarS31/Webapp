@@ -434,6 +434,7 @@ input:checked + .slider:before{
     <th>Title</th>
     <th>Category</th>
     <th>Price</th>
+    <th>Discount</th>
     <th>Status</th>
     <th>Actions</th>
 </tr>
@@ -450,6 +451,23 @@ width="60" style="border-radius:6px">
 <td><?= htmlspecialchars($c['title']) ?></td>
 <td><?= htmlspecialchars($c['category']) ?></td>
 <td>₹<?= (int)$c['price'] ?></td>
+<?php
+$price = $c['price'];
+$discount = $c['discount'];
+
+$final = $price - ($price * $discount / 100);
+?>
+
+<td>
+<?php if ($discount > 0): ?>
+    <del style="color:#aaa;">₹<?= number_format($price) ?></del><br>
+    <strong style="color:#E9BF65;">₹<?= number_format($final) ?></strong><br>
+    <small style="color:#459C7F;"><?= $discount ?>% OFF</small>
+<?php else: ?>
+    <strong>₹<?= number_format($price) ?></strong>
+<?php endif; ?>
+</td>
+
 
 <td>
 <label class="switch">
@@ -539,7 +557,32 @@ function toggleCourse(el){
             el.disabled = false;
         });
 }
+function submitForm(formId, actionUrl){
+    const form = document.getElementById(formId);
 
+    if (!form) {
+        alert("Form not found");
+        return;
+    }
+
+    const data = new FormData(form);
+
+    fetch(actionUrl, {
+        method: "POST",
+        body: data
+    })
+    .then(res => res.json())
+    .then(resp => {
+        if (resp.success) {
+            location.reload();
+        } else {
+            alert(resp.msg || "Action failed");
+        }
+    })
+    .catch(() => {
+        alert("Network error");
+    });
+}
 </script>
 
 </body>

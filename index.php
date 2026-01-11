@@ -250,18 +250,34 @@ while($row = mysqli_fetch_assoc($pkgResult)){
         </div>
     </div>
     <div class="notification">
-        <marquee behavior="slow" direction="left">
-            <?php if(count($notifications) > 0): ?>
-                <?php foreach ($notifications as $n): ?>
-                    <a href="<?= htmlspecialchars($n['link']) ?>" target = "_blank"><?= htmlspecialchars($n['title']) ?>
-                    </a>
-                    &nbsp;&nbsp; | &nbsp;&nbsp;
-                <?php endforeach; ?>
-            <?php else: ?>
-                No new notifications
-            <?php endif; ?>
-        </marquee>
-    </div>
+<marquee behavior="scroll" direction="left" onmouseover="this.stop()" onmouseout="this.start()">
+
+<?php if(mysqli_num_rows($nResult) > 0): ?>
+<?php while($n = mysqli_fetch_assoc($nResult)): ?>
+
+    <?php
+    $data = htmlspecialchars(json_encode([
+        "type" => $n['type'],
+        "file" => $n['file_path'],
+        "link" => $n['link']
+    ]));
+    ?>
+
+    <a href="#"
+       onclick='handleNotification(<?= $data ?>); return false;'>
+        <?= htmlspecialchars($n['title']) ?>
+    </a>
+
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+
+<?php endwhile; ?>
+<?php else: ?>
+    No new notifications
+<?php endif; ?>
+
+</marquee>
+</div>
+
     <div class="hero">
         <div class="hcontent">
             <h2>Welcome</h2>
@@ -352,6 +368,34 @@ while($row = mysqli_fetch_assoc($pkgResult)){
         </div>
     </div>
     </footer>
+    <div id="notifyModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.8);
+z-index:9999;
+">
+
+    <div style="
+    background:#fff;
+    width:70%;
+    margin:80px auto;
+    padding:20px;
+    position:relative;
+    border-radius:8px;
+    ">
+
+        <span onclick="closeNotifyModal()" style="
+        position:absolute;
+        right:15px;
+        top:10px;
+        cursor:pointer;
+        font-size:22px;">✖</span>
+
+        <div id="notifyModalContent"></div>
+    </div>
+</div>
+
     <script>
         // counting numbers (home page)
         const counters = document.querySelectorAll(".details-1 h1");
@@ -376,6 +420,45 @@ while($row = mysqli_fetch_assoc($pkgResult)){
         };
         updateCount();
         });
+function handleNotification(data){
+
+    switch(data.type){
+
+        case 'pdf':
+            window.open("uploads/notifications/" + data.file, "_blank");
+            break;
+
+        case 'image':
+            showModal(`<img src="uploads/notifications/${data.file}" style="max-width:100%">`);
+            break;
+
+        case 'video':
+            showModal(`
+                <video controls style="width:100%">
+                    <source src="uploads/notifications/${data.file}">
+                </video>
+            `);
+            break;
+
+        case 'external':
+            window.open(data.link, "_blank");
+            break;
+
+        case 'internal':
+            window.location.href = data.link;
+            break;
+    }
+}
+
+/* Modal helpers */
+function showModal(content){
+    document.getElementById("notifyModalContent").innerHTML = content;
+    document.getElementById("notifyModal").style.display = "block";
+}
+
+function closeNotifyModal(){
+    document.getElementById("notifyModal").style.display = "none";
+}
     </script>
 </body>
 </html>
